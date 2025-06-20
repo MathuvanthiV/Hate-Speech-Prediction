@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Home | Hate Speech & Emotion Detector{% endblock %}
+{% block content %}
+    <h2>Hate Speech & Emotion Detector</h2>
+    <form method="POST">
+        <input type="text" name="text" placeholder="Enter a sentence" required />
+        <br><br>
+        <input type="submit" value="Detect" />
+    </form>
+
+    {% if result %}
+        <h3>Hate Speech Result: {{ result }}</h3>
+        <p>Confidence: {{ confidence }}%</p>
+        <h3>Emotion Detected: {{ emotion }}</h3>
+        <p>Confidence: {{ emotion_conf }}%</p>
+        {% if suggestion %}
+            <p class="suggestion">Suggestion: {{ suggestion }}</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

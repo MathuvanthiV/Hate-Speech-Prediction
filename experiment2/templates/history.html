@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comment History</title>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; padding: 40px; text-align: center; }
+        table { border-collapse: collapse; margin: 0 auto; width: 90%; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0px 0px 10px #ccc; }
+        th, td { padding: 10px 15px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { background-color: #007BFF; color: white; }
+        tr:hover { background-color: #f1f1f1; }
+        a { display: inline-block; margin-top: 20px; text-decoration: none; color: #007BFF; }
+    </style>
+</head>
+<body>
+    <h2>Your Comment History</h2>
+    <table>
+        <tr>
+            <th>Comment</th>
+            <th>Hate</th>
+            <th>Confidence</th>
+            <th>Emotion</th>
+            <th>Confidence</th>
+            <th>Suggestion</th>
+        </tr>
+        {% for row in records %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}%</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}%</td>
+            <td>{{ row[5] or '—' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('index') }}">⬅ Back to Detection</a>
+</body>
+</html>

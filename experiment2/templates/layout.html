@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Hate Speech & Emotion Detector{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('{{ url_for("static", filename="background.jpg") }}') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.85); /* semi-transparent overlay for better readability */
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            background-color: #ffffff;
+            padding: 15px 30px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .navbar a button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .navbar a button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 60px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .suggestion {
+            background: #e7f3ff;
+            border-left: 4px solid #007BFF;
+            padding: 10px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="navbar">
+            <a href="{{ url_for('index') }}"><button>Home</button></a>
+            {% if session.get("user_id") %}
+                {% if session.get("is_admin") %}
+                    <a href="{{ url_for('admin') }}"><button>Admin</button></a>
+                {% endif %}
+                <a href="{{ url_for('history') }}"><button>History</button></a>
+                <a href="{{ url_for('logout') }}"><button>Logout</button></a>
+            {% else %}
+                <a href
